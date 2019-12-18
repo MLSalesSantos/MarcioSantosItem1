@@ -16,9 +16,9 @@ import org.hibernate.validator.constraints.br.CPF;
 
 @Entity
 @Table(name = "Cliente")
-@NamedQuery(name = "Cliente.findAll",
+@NamedQuery(name = "Cliente.findAllClientes",
 query = "SELECT Cliente.nome, Pedido.valor_total, Cliente.data_ultimo_acesso FROM Cliente, Pedido"
-		+ "WHERE Cliente.id = Pedido.id_clliente ORDER BY Pedido.valor_total DESC")
+		+ "WHERE Cliente.id = Pedido.id_cliente ORDER BY Pedido.valor_total DESC")
 public class Cliente {
 
 	@Id
