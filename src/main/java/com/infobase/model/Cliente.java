@@ -1,5 +1,6 @@
 package com.infobase.model;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -7,13 +8,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.br.CPF;
 
 @Entity
-@Table(name = "cliente")
+@Table(name = "Cliente")
+@NamedQuery(name = "Cliente.findAll",
+query = "SELECT Cliente.nome, Pedido.valor_total, Cliente.data_ultimo_acesso FROM Cliente, Pedido"
+		+ "WHERE Cliente.id = Pedido.id_clliente ORDER BY Pedido.valor_total DESC")
 public class Cliente {
 
 	@Id
@@ -29,7 +34,7 @@ public class Cliente {
 
 	@NotNull
 	@Column(name = "data_ultimo_acesso")
-	private LocalDate dataUltimoAcesso;
+	private Timestamp dataUltimoAcesso;
 
 	@NotNull
 	@Column(name = "data_nascimento")
@@ -59,11 +64,11 @@ public class Cliente {
 		this.cpf = cpf;
 	}
 
-	public LocalDate getDataUltimoAcesso() {
+	public Timestamp getDataUltimoAcesso() {
 		return dataUltimoAcesso;
 	}
 
-	public void setDataUltimoAcesso(LocalDate dataUltimoAcesso) {
+	public void setDataUltimoAcesso(Timestamp dataUltimoAcesso) {
 		this.dataUltimoAcesso = dataUltimoAcesso;
 	}
 
