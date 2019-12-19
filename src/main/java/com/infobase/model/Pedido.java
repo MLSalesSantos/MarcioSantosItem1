@@ -1,5 +1,6 @@
 package com.infobase.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -13,21 +14,23 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "pedido")
-public class Pedido {
+public class Pedido implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(name = "id_cliente")
 	private Long idCliente;
-	
+
 	@NotNull
 	private BigDecimal valorTotal;
-	
+
 	@Column(name = "data_pedido")
 	private LocalDate dataPedido;
-	
+
 	private boolean entregue;
 
 	public Long getId() {
@@ -69,7 +72,6 @@ public class Pedido {
 	public void setEntregue(boolean entregue) {
 		this.entregue = entregue;
 	}
-	
 
 	@Override
 	public int hashCode() {
@@ -94,7 +96,6 @@ public class Pedido {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
-	}   
-	
-	
+	}
+
 }

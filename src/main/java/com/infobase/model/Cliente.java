@@ -1,5 +1,6 @@
 package com.infobase.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -7,18 +8,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.br.CPF;
 
 @Entity
-@Table(name = "Cliente")
-//@NamedQuery(name = "Cliente.findAllClientes",
-//query = "SELECT Cliente.nome, Pedido.valor_total, Cliente.data_ultimo_acesso FROM Cliente, Pedido "
-//		+ " WHERE Cliente.id = Pedido.id_cliente ORDER BY Pedido.valor_total DESC")
-public class Cliente {
+//@NamedQueries({
+//	@NamedQuery(name = "Cliente.findAllClientes",
+//   			   query = " SELECT Cliente.nome, Pedido.valor_total, Cliente.data_ultimo_acesso " 
+//			         + " FROM Cliente, Pedido"
+//			         + " WHERE Cliente.id = Pedido.id_cliente "
+//			         + " ORDER BY Pedido.valor_total DESC " )
+//})
+public class Cliente implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
